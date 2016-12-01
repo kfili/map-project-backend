@@ -145,3 +145,27 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 [0m
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (9.8ms)[0m  INSERT INTO "places" ("name", "location", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Menta"], ["location", "lat: 37.812, lon: 23.234"], ["created_at", "2016-12-01 22:28:48.027232"], ["updated_at", "2016-12-01 22:28:48.027232"]]
+  [1m[36m (150.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "places" ("name", "location", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ninnolo"], ["location", "lat: 37.123, lon: 23.123"], ["created_at", "2016-12-01 22:33:09.220888"], ["updated_at", "2016-12-01 22:33:09.220888"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+  [1m[36mPlace Load (0.7ms)[0m  [1mSELECT  "places".* FROM "places" WHERE "places"."name" = $1 LIMIT 1[0m  [["name", "Ninnolo"]]
+  [1m[35mPlace Load (0.7ms)[0m  SELECT  "places".* FROM "places" WHERE "places"."name" = $1 LIMIT 1  [["name", "Ninnolo"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "places" SET "phone" = $1, "updated_at" = $2 WHERE "places"."id" = $3  [["phone", "+30 21 0801 2765"], ["updated_at", "2016-12-01 22:40:35.281282"], ["id", 2]]
+  [1m[36m (150.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mPlace Load (0.5ms)[0m  SELECT  "places".* FROM "places" WHERE "places"."name" = $1 LIMIT 1  [["name", "Ninnolo"]]
+  [1m[36mPlace Load (1.1ms)[0m  [1mSELECT  "places".* FROM "places" WHERE "places"."name" = $1 LIMIT 1[0m  [["name", "Ninnolo"]]
+  [1m[35m (13.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "places" WHERE "places"."id" = $1[0m  [["id", 2]]
+  [1m[35m (4.2ms)[0m  COMMIT
+
+
+Started GET "/places" for ::1 at 2016-12-01 17:58:39 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.7ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (2.35ms)
+Completed 200 OK in 45ms (Views: 23.0ms | ActiveRecord: 3.7ms)
