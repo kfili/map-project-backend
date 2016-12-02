@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-class PlacesController < OpenReadController
-  before_action :set_place, only: [:update, :destroy]
+class PlacesController < ApplicationController
+  before_action :set_place, only: [:show, :update, :destroy]
 
   # GET /places
   # GET /places.json
@@ -13,16 +12,16 @@ class PlacesController < OpenReadController
   # GET /places/1
   # GET /places/1.json
   def show
-    render json: Place.find(params[:id])
+    render json: @place
   end
 
   # POST /places
   # POST /places.json
   def create
-    @place = current_user.places.build(place_params)
+    @place = Place.new(place_params)
 
     if @place.save
-      render json: @place, status: :created
+      render json: @place, status: :created, location: @place
     else
       render json: @place.errors, status: :unprocessable_entity
     end
@@ -31,6 +30,8 @@ class PlacesController < OpenReadController
   # PATCH/PUT /places/1
   # PATCH/PUT /places/1.json
   def update
+    @place = Place.find(params[:id])
+
     if @place.update(place_params)
       head :no_content
     else
@@ -46,13 +47,13 @@ class PlacesController < OpenReadController
     head :no_content
   end
 
-  def set_place
-    @place = current_user.places.find(params[:id])
-  end
+  private
 
-  def place_params
-    params.require(:place).permit(:text)
-  end
+    def set_place
+      @place = Place.find(params[:id])
+    end
 
-  private :set_place, :place_params
+    def place_params
+      params.require(:place).permit(:name, :type, :location, :address, :phone, :rating)
+    end
 end
