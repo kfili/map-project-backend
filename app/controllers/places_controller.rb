@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
         @place = Place.new(place_params)
 
         if @place.save
-            render json: @place, status: :created, location: @place
+            render json: @place, status: :created
         else
             render json: @place.errors, status: :unprocessable_entity
         end
@@ -55,6 +55,6 @@ class PlacesController < ApplicationController
 
     def place_params
         params.require(:place)
-              .permit(:name, :type, :location, :address, :phone, :rating)
+              .permit(:name, :place_type, :location, :address, :phone, :rating)
     end
 end
