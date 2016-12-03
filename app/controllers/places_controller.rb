@@ -1,5 +1,5 @@
-class PlacesController < ApplicationController
-    before_action :set_place, only: [:show, :update, :destroy]
+class PlacesController < OpenReadController
+    before_action :set_place, only: [:update, :destroy]
 
     # GET /places
     # GET /places.json
@@ -12,13 +12,13 @@ class PlacesController < ApplicationController
     # GET /places/1
     # GET /places/1.json
     def show
-        render json: @place
+        render json: Place.find(params[:id])
     end
 
     # POST /places
     # POST /places.json
     def create
-        @place = Place.new(place_params)
+        @place = current_user.places.build(place_params)
 
         if @place.save
             render json: @place, status: :created
@@ -30,8 +30,6 @@ class PlacesController < ApplicationController
     # PATCH/PUT /places/1
     # PATCH/PUT /places/1.json
     def update
-        @place = Place.find(params[:id])
-
         if @place.update(place_params)
             head :no_content
         else
@@ -50,11 +48,13 @@ class PlacesController < ApplicationController
     private
 
     def set_place
-        @place = Place.find(params[:id])
+        @place = current_user.places.find(params[:id])
     end
 
     def place_params
         params.require(:place)
               .permit(:name, :place_type, :location, :address, :phone, :rating)
     end
+
+    private :set_place, :place_params
 end

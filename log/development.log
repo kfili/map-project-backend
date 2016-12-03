@@ -874,3 +874,11 @@ Processing by PlacesController#index as HTML
   [1m[36mPlace Load (1.0ms)[0m  [1mSELECT "places".* FROM "places"[0m
 [active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (5.61ms)
 Completed 200 OK in 14ms (Views: 12.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/places" for ::1 at 2016-12-02 19:32:55 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"as", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"12", "rating"=>"1"}}
+  Rendered text template (0.0ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 16ms (Views: 14.5ms | ActiveRecord: 0.0ms)
