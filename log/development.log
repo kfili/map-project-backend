@@ -882,3 +882,620 @@ Processing by PlacesController#create as */*
   Rendered text template (0.0ms)
 Filter chain halted as :authenticate rendered or redirected
 Completed 401 Unauthorized in 16ms (Views: 14.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/places" for ::1 at 2016-12-03 15:34:44 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"q", "place_type"=>"q", "location"=>"q", "address"=>"q", "phone"=>"1", "rating"=>"1"}}
+  Rendered text template (0.1ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:35:02 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (8.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (148.1ms)[0m  [1mUPDATE "users" SET "token" = '75c89bfa6e5a07e95848d745fef64041', "updated_at" = '2016-12-03 20:35:02.210270' WHERE "users"."id" = $1[0m  [["id", 1]]
+Completed 401 Unauthorized in 315ms (ActiveRecord: 162.2ms)
+
+
+Started POST "/sign-up/" for ::1 at 2016-12-03 15:35:16 -0500
+Processing by UsersController#signup as */*
+  Parameters: {"credentials"=>{"email"=>"a@aa", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'a@aa' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "token") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["email", "a@aa"], ["password_digest", "$2a$10$ZrRXtUprxW4/z5rnJLuY3.xSTIa5IaxP8cLrEAEaw7oOWjBlHMxD2"], ["created_at", "2016-12-03 20:35:16.649079"], ["updated_at", "2016-12-03 20:35:16.649079"], ["token", "6ac69e142502e8389553781430c5286d"]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Exists (1.1ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'a@aa' AND "users"."id" != 5) LIMIT 1
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Json (1.67ms)
+Completed 201 Created in 128ms (Views: 6.0ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:35:26 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@aa", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@aa"]]
+  [1m[35mSQL (4.1ms)[0m  UPDATE "users" SET "token" = '5aaa3c94c924e78d550466de8cf92bea', "updated_at" = '2016-12-03 20:35:26.344371' WHERE "users"."id" = $1  [["id", 5]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (6.15ms)
+Completed 200 OK in 100ms (Views: 6.9ms | ActiveRecord: 4.5ms)
+
+
+Started POST "/places" for ::1 at 2016-12-03 15:35:43 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"q", "place_type"=>"q", "location"=>"q", "address"=>"q", "phone"=>"1", "rating"=>"5"}}
+  Rendered text template (0.1ms)
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:39:55 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (8.2ms)[0m  UPDATE "users" SET "token" = '43c7fe34425ab0a121facb37c09c1bca', "updated_at" = '2016-12-03 20:39:55.766686' WHERE "users"."id" = $1  [["id", 1]]
+Completed 401 Unauthorized in 106ms (ActiveRecord: 8.6ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:39:59 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (4.2ms)[0m  UPDATE "users" SET "token" = '71c38d2da29b3789b16ba277221b248e', "updated_at" = '2016-12-03 20:39:59.048937' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.43ms)
+Completed 200 OK in 85ms (Views: 1.3ms | ActiveRecord: 4.6ms)
+
+
+Started PATCH "/change-password/1" for ::1 at 2016-12-03 15:40:38 -0500
+Processing by UsersController#changepw as */*
+  Parameters: {"passwords"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "71c38d2da29b3789b16ba277221b248e"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'a@a' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "password_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["password_digest", "$2a$10$tNvwvKafVuc56JgQ/WsJGuxqBlu69GXmJPSf2JEi1yMCf4ixiwTY6"], ["updated_at", "2016-12-03 20:40:39.096314"], ["id", 1]]
+  [1m[36m (3.9ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 173ms (ActiveRecord: 5.3ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:40:47 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (5.2ms)[0m  [1mUPDATE "users" SET "token" = '7784bd140057beedd72c200768bedc69', "updated_at" = '2016-12-03 20:40:47.101934' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.36ms)
+Completed 200 OK in 101ms (Views: 1.1ms | ActiveRecord: 5.8ms)
+
+
+Started POST "/places" for ::1 at 2016-12-03 15:41:14 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdfg", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "7784bd140057beedd72c200768bedc69"]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.5ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ec346cad0>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (53.9ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (123.9ms)
+
+
+Started GET "/places" for ::1 at 2016-12-03 15:42:56 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (0.6ms)[0m  [1mSELECT "places".* FROM "places"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (3.75ms)
+Completed 200 OK in 20ms (Views: 15.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/places" for ::1 at 2016-12-03 15:51:11 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.5ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.7ms)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 15:51:24 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.4ms)[0m  UPDATE "users" SET "token" = '1188257d42fd3565a0a40aac2bda5c11', "updated_at" = '2016-12-03 20:51:24.435939' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.41ms)
+Completed 200 OK in 94ms (Views: 1.3ms | ActiveRecord: 6.9ms)
+
+
+Started POST "/places" for ::1 at 2016-12-03 15:51:40 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdfg", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "1188257d42fd3565a0a40aac2bda5c11"]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ebe7acf60>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.3ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (70.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'places'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 16:06:46 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (160.5ms)[0m  [1mUPDATE "users" SET "token" = '22755a402a84f0369cf0183fe48cf09b', "updated_at" = '2016-12-03 21:06:46.544763' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.47ms)
+Completed 200 OK in 272ms (Views: 1.1ms | ActiveRecord: 166.1ms)
+
+
+Started POST "/places" for ::1 at 2016-12-03 16:07:05 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "22755a402a84f0369cf0183fe48cf09b"]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.8ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ebeb83a08>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (72.9ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 16:14:10 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.3ms)[0m  UPDATE "users" SET "token" = '10e7c296fa4328fe126b21450da74e8d', "updated_at" = '2016-12-03 21:14:10.726877' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.34ms)
+Completed 200 OK in 91ms (Views: 1.1ms | ActiveRecord: 6.6ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 16:14:26 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "10e7c296fa4328fe126b21450da74e8d"]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.6ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ec2f3a7b0>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (74.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'places'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started POST "/places/" for ::1 at 2016-12-03 16:21:41 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "10e7c296fa4328fe126b21450da74e8d"]]
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 2.9ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ec00e0428>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.9ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (77.9ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 16:22:17 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.5ms)[0m  UPDATE "users" SET "token" = '76a32cb1afcd2c3a9be3d9f083507905', "updated_at" = '2016-12-03 21:22:18.003309' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.47ms)
+Completed 200 OK in 106ms (Views: 1.2ms | ActiveRecord: 7.0ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 16:22:37 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "76a32cb1afcd2c3a9be3d9f083507905"]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9ebe755418>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (68.8ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 16:37:29 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (1.2ms)[0m  [1mUPDATE "users" SET "token" = '30d6852d8ab94ca355e9533654745716', "updated_at" = '2016-12-03 21:37:29.886009' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (5.68ms)
+Completed 200 OK in 158ms (Views: 12.9ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 16:37:47 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "30d6852d8ab94ca355e9533654745716"]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f9659b19288>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (75.6ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 17:14:10 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (148.1ms)[0m  UPDATE "users" SET "token" = 'd8f29a09b28200123241f694ab3ade41', "updated_at" = '2016-12-03 22:14:10.844276' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.64ms)
+Completed 200 OK in 254ms (Views: 1.5ms | ActiveRecord: 151.7ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 17:14:22 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "d8f29a09b28200123241f694ab3ade41"]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.6ms)
+
+NoMethodError (undefined method `places' for #<User:0x007f965857c1c8>):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.2ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (72.3ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 17:26:57 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (6.1ms)[0m  [1mUPDATE "users" SET "token" = '80c518a3078f3b0184206492dc433ec4', "updated_at" = '2016-12-03 22:26:57.462598' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.5ms)
+Completed 200 OK in 111ms (Views: 1.5ms | ActiveRecord: 9.2ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 17:27:21 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "80c518a3078f3b0184206492dc433ec4"]]
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 2.2ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (68.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'places'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started POST "/places/" for ::1 at 2016-12-03 17:33:00 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "80c518a3078f3b0184206492dc433ec4"]]
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 8.0ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.1ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (72.3ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 17:33:35 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (6.1ms)[0m  [1mUPDATE "users" SET "token" = '1e15a9718e4af60da705d55455eb89fd', "updated_at" = '2016-12-03 22:33:35.207718' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.32ms)
+Completed 200 OK in 96ms (Views: 0.9ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 17:33:50 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "1e15a9718e4af60da705d55455eb89fd"]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (74.7ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 18:40:00 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (146.2ms)[0m  UPDATE "users" SET "token" = '9cfa82cf718d21a77f0ef9ea71668bea', "updated_at" = '2016-12-03 23:40:00.363640' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (1.85ms)
+Completed 200 OK in 262ms (Views: 5.7ms | ActiveRecord: 147.4ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 18:40:15 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "9cfa82cf718d21a77f0ef9ea71668bea"]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.8ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (83.5ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 18:48:11 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (6.2ms)[0m  [1mUPDATE "users" SET "token" = 'eefb689f0a709641e1696ab462c5f16a', "updated_at" = '2016-12-03 23:48:11.296704' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.32ms)
+Completed 200 OK in 88ms (Views: 1.4ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 18:48:29 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"a", "place_type"=>"", "location"=>"", "address"=>"", "phone"=>"", "rating"=>""}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "eefb689f0a709641e1696ab462c5f16a"]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.7ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (70.9ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 18:48:33 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"", "place_type"=>"", "location"=>"", "address"=>"", "phone"=>"", "rating"=>""}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "eefb689f0a709641e1696ab462c5f16a"]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.8ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (67.0ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 18:48:46 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"a", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "eefb689f0a709641e1696ab462c5f16a"]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.4ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'user_id' for Place.):
+  app/controllers/places_controller.rb:21:in `create'
+
+
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/zhanina/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.7.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (64.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddUserIdToPlaces (20161204004948)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (26.3ms)[0m  [1mALTER TABLE "places" ADD "user_id" integer[0m
+  [1m[35m (2.4ms)[0m  CREATE  INDEX  "index_places_on_user_id" ON "places"  ("user_id")
+  [1m[36m (10.5ms)[0m  [1mALTER TABLE "places" ADD CONSTRAINT "fk_rails_8047f44aee"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20161204004948"]]
+  [1m[36m (157.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'examples'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'places'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-03 19:53:16 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "token" = '7c3a4698b149b5f84230c0161e1bedcf', "updated_at" = '2016-12-04 00:53:16.345803' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.87ms)
+Completed 200 OK in 127ms (Views: 2.9ms | ActiveRecord: 5.9ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-03 19:53:36 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdf", "place_type"=>"a", "location"=>"a", "address"=>"a", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "7c3a4698b149b5f84230c0161e1bedcf"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (18.0ms)[0m  INSERT INTO "places" ("name", "place_type", "location", "address", "phone", "rating", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["name", "asdf"], ["place_type", "a"], ["location", "a"], ["address", "a"], ["phone", "1"], ["rating", 1], ["user_id", 1], ["created_at", "2016-12-04 00:53:36.094734"], ["updated_at", "2016-12-04 00:53:36.094734"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+[active_model_serializers] Rendered PlaceSerializer with ActiveModelSerializers::Adapter::Json (2.47ms)
+Completed 201 Created in 69ms (Views: 6.0ms | ActiveRecord: 21.4ms)
+
+
+Started GET "/places" for ::1 at 2016-12-03 19:53:49 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.7ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (5.42ms)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.7ms)
