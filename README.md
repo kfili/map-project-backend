@@ -1,8 +1,18 @@
 # Smoke-Free Places
-## Find smoke free restaurants and bars easy! For the many countries where there is still smoking in public places.
 
-## Backend repo
+## Links:
 
+#### Repository of Frontend:
+https://kfili.github.io/map-project-frontend/
+
+#### Deployed Frontend:
+https://kfili.github.io/map-project-frontend/
+
+#### Deployed Backend:
+https://obscure-mountain-29763.herokuapp.com/
+
+
+## API documentation:
 
 ### Authentication
 

@@ -4,7 +4,7 @@ class PlacesController < OpenReadController
     # GET /places
     # GET /places.json
     def index
-        @places = Place.all
+        @places = Place.all # .find(id=users_id)
 
         render json: @places
     end
