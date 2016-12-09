@@ -2780,3 +2780,36 @@ Processing by PlacesController#index as */*
   [1m[36mPlace Load (0.6ms)[0m  [1mSELECT "places".* FROM "places"[0m
 [active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.34ms)
 Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-09 16:08:53 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (6.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "a@a"]]
+  [1m[36mSQL (12.6ms)[0m  [1mUPDATE "users" SET "token" = 'f25045e16405683e1ba09df5b17247bc', "updated_at" = '2016-12-09 21:08:54.061627' WHERE "users"."id" = $1[0m  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (7.39ms)
+Completed 200 OK in 166ms (Views: 31.7ms | ActiveRecord: 17.3ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-09 16:09:11 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdfghj", "place_type"=>"1", "location"=>"1", "address"=>"1", "phone"=>"1", "rating"=>"1"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1  [["token", "f25045e16405683e1ba09df5b17247bc"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mPlace Exists (0.8ms)[0m  SELECT  1 AS one FROM "places" WHERE "places"."name" = 'asdfghj' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "places" ("name", "place_type", "location", "address", "phone", "rating", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "asdfghj"], ["place_type", "1"], ["location", "1"], ["address", "1"], ["phone", "1"], ["rating", 1], ["user_id", 1], ["created_at", "2016-12-09 21:09:11.483995"], ["updated_at", "2016-12-09 21:09:11.483995"]]
+  [1m[35m (6.1ms)[0m  COMMIT
+[active_model_serializers] Rendered PlaceSerializer with ActiveModelSerializers::Adapter::Json (0.76ms)
+Completed 201 Created in 76ms (Views: 3.1ms | ActiveRecord: 11.3ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-09 16:09:12 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"asdfghj", "place_type"=>"1", "location"=>"1", "address"=>"1", "phone"=>"1", "rating"=>"1"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "f25045e16405683e1ba09df5b17247bc"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPlace Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "places" WHERE "places"."name" = 'asdfghj' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.13ms)
+Completed 422 Unprocessable Entity in 23ms (Views: 4.6ms | ActiveRecord: 1.4ms)
