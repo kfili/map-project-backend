@@ -2813,3 +2813,118 @@ Processing by PlacesController#create as */*
   [1m[35m (0.3ms)[0m  ROLLBACK
 [active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.13ms)
 Completed 422 Unprocessable Entity in 23ms (Views: 4.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-09 16:15:21 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"", "place_type"=>"", "location"=>"", "address"=>"", "phone"=>"", "rating"=>""}}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "f25045e16405683e1ba09df5b17247bc"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mPlace Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "places" WHERE "places"."name" = '' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.24ms)
+Completed 422 Unprocessable Entity in 14ms (Views: 0.8ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/places/" for ::1 at 2016-12-09 16:15:33 -0500
+Processing by PlacesController#create as */*
+  Parameters: {"place"=>{"name"=>"123", "place_type"=>"", "location"=>"", "address"=>"", "phone"=>"", "rating"=>""}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "f25045e16405683e1ba09df5b17247bc"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mPlace Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "places" WHERE "places"."name" = '123' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.18ms)
+Completed 422 Unprocessable Entity in 12ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/places" for ::1 at 2016-12-09 16:17:14 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "f25045e16405683e1ba09df5b17247bc"]]
+  [1m[35mPlace Load (0.5ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (5.2ms)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-09 16:28:20 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.2ms)[0m  UPDATE "users" SET "token" = '6dc5ccf89ed4d1c916004f8368fd6e54', "updated_at" = '2016-12-09 21:28:20.290951' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.4ms)
+Completed 200 OK in 88ms (Views: 1.1ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/places" for ::1 at 2016-12-09 16:28:23 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "6dc5ccf89ed4d1c916004f8368fd6e54"]]
+  [1m[35mPlace Load (0.4ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.3ms)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-11 09:38:11 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.2ms)[0m  UPDATE "users" SET "token" = '055753774c4188d627e0b21a6ad6cdc9', "updated_at" = '2016-12-11 14:38:11.875341' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.39ms)
+Completed 200 OK in 95ms (Views: 1.2ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/places" for ::1 at 2016-12-11 09:38:16 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "055753774c4188d627e0b21a6ad6cdc9"]]
+  [1m[35mPlace Load (0.4ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.11ms)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-11 09:38:46 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.2ms)[0m  UPDATE "users" SET "token" = '41bb87f363bde48d434f9ffc6cd26cb2', "updated_at" = '2016-12-11 14:38:46.589816' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.44ms)
+Completed 200 OK in 90ms (Views: 1.4ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/places" for ::1 at 2016-12-11 09:38:51 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "41bb87f363bde48d434f9ffc6cd26cb2"]]
+  [1m[35mPlace Load (1.0ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.1ms)
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-11 09:39:42 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.2ms)[0m  UPDATE "users" SET "token" = 'af5cea9e23b054ed086c1737336daa9a', "updated_at" = '2016-12-11 14:39:42.833556' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.43ms)
+Completed 200 OK in 87ms (Views: 1.1ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/places" for ::1 at 2016-12-11 09:39:49 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "af5cea9e23b054ed086c1737336daa9a"]]
+  [1m[35mPlace Load (0.6ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (4.48ms)
+Completed 200 OK in 11ms (Views: 8.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/sign-in/" for ::1 at 2016-12-11 10:08:46 -0500
+Processing by UsersController#signin as */*
+  Parameters: {"credentials"=>{"email"=>"a@a", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "a@a"]]
+  [1m[35mSQL (6.4ms)[0m  UPDATE "users" SET "token" = '7be74f45740840cd7725344b2bd799ea', "updated_at" = '2016-12-11 15:08:46.662150' WHERE "users"."id" = $1  [["id", 1]]
+[active_model_serializers] Rendered UserLoginSerializer with ActiveModelSerializers::Adapter::Json (0.35ms)
+Completed 200 OK in 88ms (Views: 1.0ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/places" for ::1 at 2016-12-11 10:08:56 -0500
+Processing by PlacesController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."token" = $1 LIMIT 1[0m  [["token", "7be74f45740840cd7725344b2bd799ea"]]
+  [1m[35mPlace Load (0.5ms)[0m  SELECT "places".* FROM "places"
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Json (3.96ms)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 1.1ms)
