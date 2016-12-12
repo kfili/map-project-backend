@@ -3,7 +3,7 @@
 ## Links:
 
 #### Repository of Frontend:
-https://kfili.github.io/map-project-frontend/
+https://github.com/kfili/map-project-backend
 
 #### Deployed Frontend:
 https://kfili.github.io/map-project-frontend/
